@@ -102,17 +102,17 @@ proxies:
 #==============================（vless-ws节点）
 - name: vless-ws节点                               #可自定义名称
   type: vless
-  server: yg.ygkkk.eu.org                          #解析的域名或者优选域名IP
-  port: 8880                                       #自定义的端口
-  uuid: 77a571fb-4fd2-4b37-8596-1b7d9728bb5c       #自定义的uuid
+  server: speedip.eu.org                          #解析的域名或者优选域名IP
+  port: 80                                       #自定义的端口
+  uuid: E064CB84-EB67-46BB-8159-8F8E557E0FBF       #自定义的uuid
   udp: true
   tls: false
   network: ws
-  servername: abc.ygkkk.eu.org                     #sni域名，与下面的host一致
+  servername: loon.yumo.workers.dev                     #sni域名，与下面的host一致
   ws-opts:
     path: "/?ed=2048"                              #" "内自定义的path路径
     headers:
-      Host: abc.ygkkk.eu.org                       #host域名，与上面的servername一致
+      Host: loon.yumo.workers.dev                       #host域名，与上面的servername一致
 
 #==============================（vmess-ws-tls节点）
 - name: vmess-ws-tls节点                           #可自定义名称
