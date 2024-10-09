@@ -139,32 +139,32 @@ proxy-groups:
   - name: 香港
     type: select
     include-all: true
-    filter: "(?i)港|hk|hongkong|hong kong"
+    filter: "𝐻𝑜𝑛𝑔 𝐾𝑜𝑛𝑔"
 
   - name: 台湾
     type: select
     include-all: true
-    filter: "(?i)台|tw|taiwan"
+    filter: "𝑇𝑎𝑖𝑤𝑎𝑛"
 
   - name: 日本
     type: select
     include-all: true
-    filter: "(?i)日|jp|japan"
+    filter: "𝐽𝑎𝑝𝑎𝑛"
 
   - name: 美国
     type: select
     include-all: true
-    filter: "(?i)美|us|unitedstates|united states"
+    filter: "𝑈𝑛𝑖𝑡𝑒𝑑 𝑆𝑡𝑎𝑡𝑒𝑠"
 
   - name: 新加坡
     type: select
     include-all: true
-    filter: "(?i)(新|sg|singapore)"
+    filter: "𝑆𝑖𝑛𝑔𝑎𝑝𝑜𝑟𝑒"
 
   - name: 其它地区
     type: select
     include-all: true
-    filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"
+    filter: "(?i)^(?!.*(𝐻𝑜𝑛𝑔 𝐾𝑜𝑛𝑔|𝑇𝑎𝑖𝑤𝑎𝑛|𝐽𝑎𝑝𝑎𝑛|𝑈𝑛𝑖𝑡𝑒𝑑 𝑆𝑡𝑎𝑡𝑒𝑠|𝑆𝑖𝑛𝑔𝑎𝑝𝑜𝑟𝑒)).*"
 
   - name: 全部节点
     type: select
