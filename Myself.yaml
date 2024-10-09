@@ -37,20 +37,6 @@ geoip: true
 geoip-code: CN
 ipcidr:
       - 240.0.0.0/4
-proxy-providers:
-  clashmeta:
-    type: http
-    # 订阅链接, 订阅文件应当为 yaml 格式, 否则应当进行订阅转换
-    # 同一个订阅链接可能会根据不同的 User-Agent 返回不同的内容
-    # 请测试 User-Agent 为 clash/clash.meta 时是否返回 yaml
-    url: "https://gist.githubusercontent.com/Anlanxy/a46b4d060291eded5b2c3d3f92d4aee1/raw/"
-    interval: 1200
-    path: ./profiles/proxies/subscribe.yaml
-    health-check:
-      # 选中时是否进行测试
-      enable: false
-      interval: 600
-      url: http://www.gstatic.com/generate_204
 proxy-groups:
   - name: Proxies
     type: select
