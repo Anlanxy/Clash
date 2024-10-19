@@ -7,7 +7,6 @@ proxy-groups:
       - Direct
   - name: Select
     icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png
-    include-all: true
     type: select
     proxies:
       - HK
@@ -45,7 +44,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png
     type: select
     proxies:
-      - Reject
+      - REJECT
       - Direct
   - name: HK
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
