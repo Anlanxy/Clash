@@ -1,54 +1,18 @@
+# Profile Template for Clash Verge
 port: 7890
 socks-port: 7891
 allow-lan: true
-bind-address: "*"
 mode: rule
 log-level: info
-ipv6: false
-profile:
-  store-selected: true
-  store-fake-ip: true
-unified-delay: true
-tcp-concurrent: true
-dns:
-  enable: true
-  ipv6: false
-  listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  use-hosts: true
-  default-nameserver:
-    - 119.29.29.29
-nameserver:
-  - https://doh.pub/dns-query
-fake-ip-filter:
-  - "*.lan"
-  - "localhost.ptlogin2.qq.com"
-  - "dns.msftncsi.com"
-  - "*.srv.nintendo.net"
-  - "*.stun.playstation.net"
-  - "xbox.*.microsoft.com"
-  - "*.xboxlive.com"
-fallback:
-  - 1.1.1.1
-  - 8.8.8.8
-fallback-filter:
-geoip: true
-geoip-code: CN
-ipcidr:
-  - 240.0.0.0/4
-proxies:
-  - name: "Surge"
-    type: http
-    server: 192.168.50.90
-    port: 7222
+external-controller: 127.0.0.1:9090
+# geoip: true
+# geoip-code: CN
 proxy-groups:
   - name: Proxies
     type: select
     proxies:
       - Fallback
       - Select
-      - Direct
   - name: Fallback
     type: fallback
     url: "https://www.gstatic.com/generate_204"
@@ -70,28 +34,21 @@ proxy-groups:
       - US~
       - KR~
       - OR~
-  - name: Media◆
-    type: select
-    proxies:
-      - Fallback
-      - Select
-      - Direct
+  # - name: Media◆
+  #   type: select
+  #   proxies:
+  #     - HK~
+  #     - TW~
+  #     - JP~
+  #     - SG~
+  #     - US~
+  #     - KR~
   - name: Media◇
     type: select
     proxies:
-      - Direct
+      - DIRECT
       - HK~
       - TW~
-  - name: Microsoft
-    type: select
-    proxies:
-      - Select
-      - Direct
-  - name: Steam
-    type: select
-    proxies:
-      - Select
-      - Direct
   - name: HK~
     type: url-test
     url: "https://cp.cloudflare.com/generate_204"
@@ -145,133 +102,99 @@ proxy-groups:
     exclude-filter: 𝐻𝑜𝑛𝑔 𝐾𝑜𝑛𝑔|𝑇𝑎𝑖𝑤𝑎𝑛|𝐽𝑎𝑝𝑎𝑛|𝑈𝑛𝑖𝑡𝑒𝑑 𝑆𝑡𝑎𝑡𝑒𝑠|𝑆𝑖𝑛𝑔𝑎𝑝𝑜𝑟𝑒|𝐾𝑜𝑟𝑒𝑎|Hong Kong|Korea|United States|Singapore|Japan|Taiwan
     use:
       - clashmeta
-  - name: AD block
-    type: select
-    proxies:
-      - REJECT
-      - Select
-      - Direct
-  - name: Direct
-    type: select
-    proxies:
-      - DIRECT
 rule-providers:
-  BiliBili:
+  google-cn-proxy-ip:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
+    interval: 86400
+    path: ./ruleset/GoogleCNProxyIP.list
+  local-area-network:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"
+    interval: 86400
+    path: ./ruleset/LocalAreaNetwork.list
+  unban:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"
+    interval: 86400
+    path: ./ruleset/UnBan.list
+  china-domain:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
+    interval: 86400
+    path: ./ruleset/ChinaDomain.list
+  china-media:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list"
+    interval: 86400
+    path: ./ruleset/ChinaMedia.list
+  Ban-AD:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
+    interval: 86400
+    path: ./ruleset/BanAD.list
+  BanProgram-AD:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
+    interval: 86400
+    path: ./ruleset/BanProgramAD.list
+  china-company-ip:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
+    interval: 86400
+    path: ./ruleset/ChinaCompanyIp.list
+  china-ip:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list"
+    interval: 86400
+    path: ./ruleset/ChinaIp.list
+  bilibili:
     type: http
     behavior: classical
     url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili_No_Resolve.yaml"
     interval: 86400
     path: ./ruleset/BiliBili_No_Resolve.yaml
-  Netflix:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/Netflix_No_Resolve.yaml
-  Disney:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/Disney_No_Resolve.yaml
-  GlobalMedia:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/GlobalMedia_Classical_No_Resolve.yaml
-  OpenAI:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/OpenAI_No_Resolve.yaml
-  Google:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/Google_No_Resolve.yaml
-  DMM:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/DMM/DMM.yaml"
-    interval: 86400
-    path: ./ruleset/DMM.yaml
-  Microsoft:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/Microsoft_No_Resolve.yaml
-  PayPal:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/PayPal_No_Resolve.yaml
-  Telegram:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/Telegram_No_Resolve.yaml
-  Steam:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/Steam_No_Resolve.yaml
-  Proxy:
-    type: http
-    behavior: domain
-    interval: 86400
-    path: ./ruleset/proxy.yaml
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
-  Reject:
-    type: http
-    behavior: classical
-    interval: 86400
-    path: ./ruleset/AdvertisingLite_Classical.yaml
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Classical.yaml"
-  # Reject:
+  # GlobalMedia:
   #   type: http
-  #   behavior: domain
+  #   behavior: classical
+  #   url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml"
   #   interval: 86400
-  #   path: ./ruleset/reject.yaml
-  #   url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
-  Lan:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/Lan_No_Resolve.yaml
-  ChinaMax:
-    type: http
-    behavior: classical
-    url: "https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Classical_No_IPv6_No_Resolve.yaml"
-    interval: 86400
-    path: ./ruleset/ChinaMax_Classical_No_IPv6_No_Resolve.yaml
+  #   path: ./ruleset/GlobalMedia_Classical_No_Resolve.yaml
 rules:
-  - DOMAIN,www.feijiji.com,Select
-  - DOMAIN,www.mxdm.xyz,Select
-  - DOMAIN-SUFFIX,girigirilove.com,Proxies
-  - DOMAIN-SUFFIX,hehe.la,Proxies
-  - RULE-SET,Reject,AD block
-  - RULE-SET,BiliBili,Media◇
-  - RULE-SET,Netflix,Media◆
-  - RULE-SET,Disney,Media◆
-  - RULE-SET,DMM,Select
-  - RULE-SET,GlobalMedia,Media◆
-  - RULE-SET,OpenAI,Proxies
-  - RULE-SET,Steam,Steam
-  - RULE-SET,Google,Proxies
-  - RULE-SET,PayPal,Select
-  - RULE-SET,Telegram,Proxies
-  - RULE-SET,Microsoft,Microsoft
-  # - RULE-SET,Proxy,Proxies
-  # - RULE-SET,Reject,AD block
-  - RULE-SET,ChinaMax,Direct
-  - RULE-SET,Lan,Direct
-  - GEOIP,CN,Direct,no-resolve
+  - DOMAIN-SUFFIX,yuque.com,DIRECT
+  - DOMAIN-SUFFIX,mihoyo.com,DIRECT
+  - DOMAIN-SUFFIX,dzncpjy.com,DIRECT
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Proxies
+  - DOMAIN-SUFFIX,services.googleapis.cn,Proxies
+  - RULE-SET,google-cn-proxy-ip,Proxies
+  - RULE-SET,bilibili,Media◇
+  # - RULE-SET,GlobalMedia,Media◆
+  - RULE-SET,local-area-network,DIRECT
+  - RULE-SET,unban,DIRECT
+  - RULE-SET,china-domain,DIRECT
+  - RULE-SET,china-media,DIRECT
+  - RULE-SET,Ban-AD,REJECT
+  - RULE-SET,BanProgram-AD,REJECT
+  - RULE-SET,china-company-ip,DIRECT
+  - RULE-SET,china-ip,DIRECT
+  # - RULE-SET,ChinaMax,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
   - MATCH,Proxies
