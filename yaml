@@ -32,23 +32,9 @@ geox-url:
 unified-delay: true
 geo-update-interval: 24
 proxies:
-- name: Surge
-  type: http
-  server: 192.168.50.90
-  port: 7222
-# - name: "德国自建落地"
-#   dialer-proxy: OR~
-#   type: hysteria2
-#   server: udp.eu-central-1.clawcloudrun.com
-#   port: 38086
-#   password: jkl987
-#   skip-cert-verify: true
-# - name: Hys2
-#   type: hysteria2
-#   server: udp.eu-central-1.clawcloudrun.com
-#   port: 38086
-#   password: jkl987
-#   skip-cert-verify: true
+- name: DIRECT
+  type: direct
+
 proxy-providers:
   clashmeta:
     type: http
@@ -59,51 +45,14 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-  # flower:
-  #   type: http
-  #   url: https://api-huacloud.net/sub?target=clash&insert=true&emoji=true&udp=true&clash.doh=true&new_name=true&filename=Flower_SS&url=https%3A%2F%2Fapi.xmancdn.net%2Fosubscribe.php%3Fsid%3D160167%26token%3DrlQ70q4aaN1j%26sip002%3D1
-  #   interval: 1200
-  #   path: ./profiles/proxies/flower.yaml
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     url: http://www.gstatic.com/generate_204
-  # kuromis:
-  #   type: http
-  #   url: https://veridianpulse.net/0f3d49d8f402b091c9a1b09fe271d91c?type=clash&protocol=ss2022&use=domestic&rule=default
-  #   interval: 1200
-  #   path: ./profiles/proxies/kuromis.yaml
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     url: http://www.gstatic.com/generate_204
-  # cf:
-  #   type: http
-  #   url: https://vqidnrzyoqev.eu-central-1.clawcloudrun.com/share/sub/cf?token=2324
-  #   interval: 1200
-  #   path: ./profiles/proxies/cf.yaml
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     url: http://www.gstatic.com/generate_204
-  # rio:
-  #   type: http
-  #   url: https://dydz.lime5.xyz/api/v1/client/subscribe?token=a92670b8d5448d5eab3912ed02f958a9
-  #   interval: 1200
-  #   path: ./profiles/proxies/rio.yaml
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     url: http://www.gstatic.com/generate_204
+  
 proxy-groups:
 - name: Proxies
   type: select
   proxies:
   - Fallback
   - Select
-  # - 德国自建落地
-  # - Hys2
-  # - 链式代理
+  
 - name: Fallback
   type: fallback
   url: https://www.gstatic.com/generate_204
@@ -115,11 +64,7 @@ proxy-groups:
   - JP~
   - US~
   - KR~
-# - name: 链式代理
-#   type: relay
-#   proxies:
-#   - 自建落地
-#   - OR~
+
 - name: Select
   type: select
   proxies:
@@ -129,7 +74,6 @@ proxy-groups:
   - JP~
   - US~
   - KR~
-  # - CF~
   - OR~
 - name: Media◇
   type: select
@@ -144,9 +88,6 @@ proxy-groups:
   tolerance: 20
   interval: 120
   use:
-  # - flower
-  # - kuromis
-  # - rio
   - clashmeta
 - name: TW~
   type: url-test
@@ -155,9 +96,6 @@ proxy-groups:
   tolerance: 20
   interval: 120
   use:
-  # - flower
-  # - kuromis
-  # - rio
   - clashmeta
 - name: JP~
   type: url-test
@@ -166,9 +104,6 @@ proxy-groups:
   tolerance: 20
   interval: 120
   use:
-  # - flower
-  # - kuromis
-  # - ΛИҮШΛҮ
   - clashmeta
 - name: SG~
   type: url-test
@@ -177,10 +112,6 @@ proxy-groups:
   tolerance: 20
   interval: 120
   use:
-  # - flower
-  # - kuromis
-  # - ΛИҮШΛҮ
-  # - rio
   - clashmeta
 - name: US~
   type: url-test
@@ -189,9 +120,6 @@ proxy-groups:
   tolerance: 20
   interval: 120
   use:
-  # - flower
-  # - kuromis
-  # - rio
   - clashmeta
 - name: KR~
   type: url-test
@@ -200,27 +128,11 @@ proxy-groups:
   tolerance: 20
   interval: 120
   use:
-  # - flower
-  # - kuromis
-  # - rio
   - clashmeta
-# - name: CF~
-#   type: url-test
-#   url: https://cp.cloudflare.com/generate_204
-#   # filter: 𝐾𝑜𝑟𝑒𝑎|Korea|韩国
-#   tolerance: 20
-#   interval: 120
-#   use:
-#   # - flower
-#   # - kuromis
-#   # - rio
-#   - cf
 - name: OR~
   type: select
   exclude-filter: 𝐻𝑜𝑛𝑔 𝐾𝑜𝑛𝑔|𝑇𝑎𝑖𝑤𝑎𝑛|𝐽𝑎𝑝𝑎𝑛|𝑈𝑛𝑖𝑡𝑒𝑑 𝑆𝑡𝑎𝑡𝑒𝑠|𝑆𝑖𝑛𝑔𝑎𝑝𝑜𝑟𝑒|𝐾𝑜𝑟𝑒𝑎|Hong Kong|Korea|United States|Singapore|Japan|Taiwan|韩国|🇭🇰|🇹🇼|🇯🇵|美国|新加坡|🇰🇷|🇺🇸|🇸🇬
   use:
-  # - flower
-  # - kuromis
   - clashmeta
 rule-providers:
   google-cn-proxy-ip:
