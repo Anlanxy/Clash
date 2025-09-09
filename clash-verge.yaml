@@ -31,77 +31,16 @@ geox-url:
   mmdb: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb
 unified-delay: true
 geo-update-interval: 24
-rule-providers:
-  google-cn-proxy-ip:
+proxy-providers:
+  clashmeta:
     type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
-    interval: 86400
-    path: ./ruleset/GoogleCNProxyIP.list
-  local-area-network:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
-    interval: 86400
-    path: ./ruleset/LocalAreaNetwork.list
-  unban:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
-    interval: 86400
-    path: ./ruleset/UnBan.list
-  china-domain:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
-    interval: 86400
-    path: ./ruleset/ChinaDomain.list
-  china-media:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
-    interval: 86400
-    path: ./ruleset/ChinaMedia.list
-  Ban-AD:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
-    interval: 86400
-    path: ./ruleset/BanAD.list
-  BanProgram-AD:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
-    interval: 86400
-    path: ./ruleset/BanProgramAD.list
-  china-company-ip:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
-    interval: 86400
-    path: ./ruleset/ChinaCompanyIp.list
-  china-ip:
-    type: http
-    behavior: classical
-    format: text
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list
-    interval: 86400
-    path: ./ruleset/ChinaIp.list
-  bilibili:
-    type: http
-    behavior: classical
-    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili_No_Resolve.yaml
-    interval: 86400
-    path: ./ruleset/BiliBili_No_Resolve.yaml
-
+    url: ""
+    interval: 1200
+    path: ./profiles/proxies/subscribe.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
 proxy-groups:
   - name: PROXY
     type: select
@@ -184,6 +123,76 @@ proxy-groups:
     tolerance: 20
     interval: 120
     include-all: true
+rule-providers:
+  google-cn-proxy-ip:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list
+    interval: 86400
+    path: ./ruleset/GoogleCNProxyIP.list
+  local-area-network:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+    interval: 86400
+    path: ./ruleset/LocalAreaNetwork.list
+  unban:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+    interval: 86400
+    path: ./ruleset/UnBan.list
+  china-domain:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    interval: 86400
+    path: ./ruleset/ChinaDomain.list
+  china-media:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
+    interval: 86400
+    path: ./ruleset/ChinaMedia.list
+  Ban-AD:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    interval: 86400
+    path: ./ruleset/BanAD.list
+  BanProgram-AD:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
+    interval: 86400
+    path: ./ruleset/BanProgramAD.list
+  china-company-ip:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+    interval: 86400
+    path: ./ruleset/ChinaCompanyIp.list
+  china-ip:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list
+    interval: 86400
+    path: ./ruleset/ChinaIp.list
+  bilibili:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili_No_Resolve.yaml
+    interval: 86400
+    path: ./ruleset/BiliBili_No_Resolve.yaml
 
 rules:
   - "DOMAIN-SUFFIX,yuque.com,DIRECT"
@@ -209,4 +218,5 @@ rules:
   - "GEOIP,CN,DIRECT,no-resolve"
 
   - "MATCH,Proxies"
+
 
