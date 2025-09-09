@@ -1,3 +1,36 @@
+mode: rule
+mixed-port: 7897
+allow-lan: false
+log-level: info
+external-controller: 127.0.0.1:9097
+secret: ''
+profile:
+  store-selected: true
+  store-fake-ip: true
+geo-auto-update: true
+geodata-loader: standard
+dns:
+  prefer-h3: true
+  default-nameserver:
+  - 180.184.1.1
+  - udp://47.108.230.123:5553
+  - https://119.29.29.29/dns-query
+  nameserver-policy:
+    http-inputs-notion.splunkcloud.com,+.notion-static.com,+.notion.com,+.notion.new,+.notion.site,+.notion.so: tls://dns.jerryw.cn
+    geosite:geolocation-!cn:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+    - 180.184.1.1
+    nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+    - 180.184.1.1
+geox-url:
+  geoip: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+  geosite: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+  mmdb: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb
+unified-delay: true
+geo-update-interval: 24
 rule-providers:
   google-cn-proxy-ip:
     type: http
@@ -176,3 +209,4 @@ rules:
   - "GEOIP,CN,DIRECT,no-resolve"
 
   - "MATCH,Proxies"
+
