@@ -1,46 +1,77 @@
-mode: rule
-mixed-port: 7897
-allow-lan: false
-log-level: info
-external-controller: 127.0.0.1:9097
-secret: ''
+# url 里填写自己的订阅,名称不能重复
+proxy-providers:
+  provider1:
+    url: ""
+    type: http
+    interval: 86400
+    health-check: {enable: true,url: "https://www.gstatic.com/generate_204",interval: 300}
+    override:
+      additional-prefix: "[provider1]"
+
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+unified-delay: false
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
 profile:
   store-selected: true
   store-fake-ip: true
-geo-auto-update: true
-geodata-loader: standard
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
 dns:
-  prefer-h3: true
-  default-nameserver:
-  - 180.184.1.1
-  - udp://47.108.230.123:5553
-  - https://119.29.29.29/dns-query
+  enable: true
+  ipv6: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
   nameserver-policy:
-    http-inputs-notion.splunkcloud.com,+.notion-static.com,+.notion.com,+.notion.new,+.notion.site,+.notion.so: tls://dns.jerryw.cn
-    geosite:geolocation-!cn:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - 180.184.1.1
-    nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - 180.184.1.1
-geox-url:
-  geoip: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
-  geosite: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
-  mmdb: https://fastgh.lainbo.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb
-unified-delay: true
-geo-update-interval: 24
-proxy-providers:
-  clashmeta:
-    type: http
-    url: ""
-    interval: 1200
-    path: ./profiles/proxies/subscribe.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.gstatic.com/generate_204
+    "rule-set:cn_domain,private_domain":
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+    "rule-set:geolocation-!cn":
+      - "https://dns.cloudflare.com/dns-query"
+      - "https://dns.google/dns-query"
+
 proxy-groups:
   - name: PROXY
     type: select
@@ -74,6 +105,8 @@ proxy-groups:
       - DIRECT
       - HK~
       - TW~
+  
+  
   - name: HK~
     type: url-test
     url: https://cp.cloudflare.com/generate_204
@@ -123,6 +156,8 @@ proxy-groups:
     tolerance: 20
     interval: 120
     include-all: true
+
+
 rule-providers:
   google-cn-proxy-ip:
     type: http
@@ -216,7 +251,7 @@ rules:
   - "RULE-SET,china-company-ip,DIRECT"
   - "RULE-SET,china-ip,DIRECT"
   - "GEOIP,CN,DIRECT,no-resolve"
-
   - "MATCH,Proxies"
+
 
 
