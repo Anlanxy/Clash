@@ -49,42 +49,42 @@ proxy-groups:
   - name: HK
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png
     include-all: true
-    filter: 𝐻𝑜𝑛𝑔 𝐾𝑜𝑛𝑔|Hong Kong|HongKong
+    filter: 𝐻𝑜𝑛𝑔 𝐾𝑜𝑛𝑔|Hong Kong|香港|HK|HongKong|🇭🇰
     type: url-test
     interval: 100
     tolerance: 20
   - name: TW
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png
     include-all: true
-    filter: Taiwan
+    filter: 𝑇𝑎𝑖𝑤𝑎𝑛|Taiwan|台湾|TW|🇹🇼
     type: url-test
     interval: 100
     tolerance: 20
   - name: JP
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png
     include-all: true
-    filter: Japan
+    filter: 𝐽𝑎𝑝𝑎𝑛|Japan|日本|🇯🇵
     type: url-test
     interval: 100
     tolerance: 20
   - name: US
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png
     include-all: true
-    filter: United States
+    filter: 𝑈𝑛𝑖𝑡𝑒𝑑 𝑆𝑡𝑎𝑡𝑒𝑠|United States|美国|USA|🇺🇸
     type: url-test
     interval: 100
     tolerance: 20
   - name: SG
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png
     include-all: true
-    filter: Singapore
+    filter: 𝑆𝑖𝑛𝑔𝑎𝑝𝑜𝑟𝑒|Singapore|新加坡|狮城|🇸🇬
     type: url-test
     interval: 100
     tolerance: 20
   - name: KR
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png
     include-all: true
-    filter: Korea
+    filter: 𝐾𝑜𝑟𝑒𝑎|Korea|韩国|🇰🇷
     type: url-test
     interval: 100
     tolerance: 20
