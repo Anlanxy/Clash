@@ -196,7 +196,7 @@ rule-providers:
   stream_ip:          { <<: *rs_classical, url: "https://ruleset.skk.moe/Clash/ip/stream.txt",             path: ./rule_set/stream_ip.txt }
   domestic_ip:        { <<: *rs_classical, url: "https://ruleset.skk.moe/Clash/ip/domestic.txt",           path: ./rule_set/domestic_ip.txt }
   lan_ip:             { <<: *rs_classical, url: "https://ruleset.skk.moe/Clash/ip/lan.txt",                path: ./rule_set/lan_ip.txt }
-  china_ip:           { <<: *rs_ipcidr,    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list",           path: ./rule_set/china_ip.txt }
+  china_ip:           { <<: *rs_ipcidr,    url: "https://ruleset.skk.moe/Clash/ip/china_ip.txt",           path: ./rule_set/china_ip.txt }
 
 # ── 路由规则 ──────────────────────────────────────────────────
 rules:
