@@ -93,7 +93,7 @@ proxy-groups:
   - name: 🌐 Proxy
     type: select
     # use: [Airport]
-    include-all: true
+    include-all-proxies: true
     filter: ^((?!(香港|🇭🇰|台湾|🇹🇼|日本|🇯🇵|美国|🇺🇸|新加坡|🇸🇬)).)*$
     proxies: ["🇭🇰 HK Auto", "🇹🇼 TW Auto", "🇯🇵 JP Auto", "🇺🇸 US Auto", "🇸🇬 SG Auto", "DIRECT"]
 
