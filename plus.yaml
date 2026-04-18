@@ -189,14 +189,13 @@ rule-providers:
 
 # ── 路由规则 ──────────────────────────────────────────────────
 rules:
-  # CUSTOM-RULES-START
+  # 自定义规则
   # 非 IP 类（不触发 DNS 解析）
   - RULE-SET,reject_non_ip,REJECT
   - RULE-SET,reject_domainset,REJECT
   - RULE-SET,reject_non_ip_drop,REJECT-DROP
   - RULE-SET,ai_non_ip,🤖 OpenAI
   - RULE-SET,telegram_non_ip,📱 Social
-  # CUSTOM-RULES-END
   - RULE-SET,stream_non_ip,📺 Streaming
   - RULE-SET,apple_cdn,DIRECT
   - RULE-SET,apple_cn_non_ip,DIRECT
