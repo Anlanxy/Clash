@@ -19,7 +19,7 @@ geodata-loader: memconservative
 geosite-matcher: succinct
 
 external-controller: 127.0.0.1:9090
-# secret: "your_strong_password"
+# secret: "your_name"
 external-ui: ui
 external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
@@ -104,7 +104,8 @@ proxy-providers:
 proxy-groups:
   - name: 🌐 Proxy
     type: select
-    use: [Airport]
+    # use: [Airport]
+    include-all-providers: true
     filter: ^((?!(香港|🇭🇰|台湾|🇹🇼|日本|🇯🇵|美国|🇺🇸|新加坡|🇸🇬)).)*$
     proxies: ["🇭🇰 HK Auto", "🇹🇼 TW Auto", "🇯🇵 JP Auto", "🇺🇸 US Auto", "🇸🇬 SG Auto", "DIRECT"]
 
@@ -126,7 +127,7 @@ proxy-groups:
 
   - name: 🇭🇰 HK Auto
     type: url-test
-    use: [Airport]
+    include-all-providers: true
     filter: "(?i)🇭🇰|香港|HK|Hong Kong"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -135,7 +136,7 @@ proxy-groups:
 
   - name: 🇹🇼 TW Auto
     type: url-test
-    use: [Airport]
+    include-all-providers: true
     filter: "(?i)🇹🇼|台湾|TW|Taiwan"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -144,7 +145,7 @@ proxy-groups:
 
   - name: 🇯🇵 JP Auto
     type: url-test
-    use: [Airport]
+    include-all-providers: true
     filter: "(?i)🇯🇵|日本|JP|Japan"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -153,7 +154,7 @@ proxy-groups:
 
   - name: 🇺🇸 US Auto
     type: url-test
-    use: [Airport]
+    include-all-providers: true
     filter: "(?i)🇺🇸|美国|United States"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -162,7 +163,7 @@ proxy-groups:
 
   - name: 🇸🇬 SG Auto
     type: url-test
-    use: [Airport]
+    include-all-providers: true
     filter: "(?i)🇸🇬|新加坡|SG|Singapore"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -200,6 +201,7 @@ rule-providers:
 
 # ── 路由规则 ──────────────────────────────────────────────────
 rules:
+  # 自定义规则
   # 非 IP 类（不触发 DNS 解析）
   - RULE-SET,reject_non_ip,REJECT
   - RULE-SET,reject_domainset,REJECT
