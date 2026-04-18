@@ -87,25 +87,13 @@ dns:
     - https://doh.pub/dns-query
 
 # ── 代理提供者 ────────────────────────────────────────────────
-proxy-providers:
-  Airport:
-    type: http
-    url: ""
-    interval: 3600
-    path: ./proxy_providers/airport.yaml
-    health-check:
-      enable: true
-      interval: 300
-      timeout: 5000
-      lazy: true
-      url: http://www.gstatic.com/generate_204
 
 # ── 代理组 ────────────────────────────────────────────────────
 proxy-groups:
   - name: 🌐 Proxy
     type: select
     # use: [Airport]
-    include-all-providers: true
+    include-all: true
     filter: ^((?!(香港|🇭🇰|台湾|🇹🇼|日本|🇯🇵|美国|🇺🇸|新加坡|🇸🇬)).)*$
     proxies: ["🇭🇰 HK Auto", "🇹🇼 TW Auto", "🇯🇵 JP Auto", "🇺🇸 US Auto", "🇸🇬 SG Auto", "DIRECT"]
 
@@ -127,7 +115,7 @@ proxy-groups:
 
   - name: 🇭🇰 HK Auto
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "(?i)🇭🇰|香港|HK|Hong Kong"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -136,7 +124,7 @@ proxy-groups:
 
   - name: 🇹🇼 TW Auto
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "(?i)🇹🇼|台湾|TW|Taiwan"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -145,7 +133,7 @@ proxy-groups:
 
   - name: 🇯🇵 JP Auto
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "(?i)🇯🇵|日本|JP|Japan"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -154,7 +142,7 @@ proxy-groups:
 
   - name: 🇺🇸 US Auto
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "(?i)🇺🇸|美国|United States"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
@@ -163,7 +151,7 @@ proxy-groups:
 
   - name: 🇸🇬 SG Auto
     type: url-test
-    include-all-providers: true
+    include-all: true
     filter: "(?i)🇸🇬|新加坡|SG|Singapore"
     url: https://cp.cloudflare.com/generate_204
     interval: 300
