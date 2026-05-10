@@ -37,9 +37,6 @@ config.outbounds.map(i => {
   if (['KR-Auto'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /韩|Korea|🇰🇷/i))
   }
-  if (['GB-Auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /🇬🇧/i))
-  }
 })
 
 config.outbounds.forEach(outbound => {
